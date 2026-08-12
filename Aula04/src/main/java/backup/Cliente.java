@@ -1,0 +1,89 @@
+package backup;
+
+import java.util.*;
+
+public class Cliente {
+    private String nome;
+    private List<Aluguel> alugueis = new ArrayList<>();
+    private double valorTotal = 0;
+    private int pontosDeAlugadorFrequente = 0;
+    
+
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public void adicionaAluguel(Aluguel aluguel) {
+        alugueis.add(aluguel);
+    }
+    
+    public double getValorTotal(Aluguel aluguel) {
+    	double valorCorrente = 0; //custo do aluguel atual
+
+        switch (aluguel.getFita().getCodigoDePreco()) {
+            case Fita.NORMAL:
+                valorCorrente += 2;
+                if (aluguel.getDiasAlugada() > 2)
+                    valorCorrente += (aluguel.getDiasAlugada() - 2) * 1.5;
+                break;
+            case Fita.LANCAMENTO:
+                valorCorrente += aluguel.getDiasAlugada() * 3;
+                break;
+            case Fita.INFANTIL:
+                valorCorrente += 1.5;
+                if (aluguel.getDiasAlugada() > 3)
+                    valorCorrente += (aluguel.getDiasAlugada() - 3) * 1.5;
+                break;
+        }
+
+    	return valorCorrente;
+    }
+    
+    public int getPontosTotaisDeAlugadorFrequente(Aluguel aluguel){
+    	pontosDeAlugadorFrequente++;
+    	if ((aluguel.getFita().getCodigoDePreco() == Fita.LANCAMENTO) 
+                && aluguel.getDiasAlugada() > 1) {
+                pontosDeAlugadorFrequente++;
+            }
+    	return pontosDeAlugadorFrequente;
+    }
+
+    public String extrato() {        
+        String resultado = "Registro de Alugueis de " + getNome() + "\n";
+
+        for (Aluguel aluguel : alugueis) {
+        	getValorTotal(aluguel);      
+        	setPontosDeAlugadorFrequente(getPontosTotaisDeAlugadorFrequente(aluguel));
+
+            // linha do extrato
+            resultado += "\t" + aluguel.getFita().getTitulo() + "\t" + getValorTotal(aluguel) + "\n";
+            valorTotal += getValorTotal(aluguel);
+        }
+
+        // rodapé
+        resultado += "Valor total devido: " + valorTotal + "\n";
+        resultado += "Você ganhou " + pontosDeAlugadorFrequente + " pontos de alugador frequente";
+        return resultado;
+    }
+
+	public double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public int getPontosDeAlugadorFrequente() {
+		return pontosDeAlugadorFrequente;
+	}
+
+	public void setPontosDeAlugadorFrequente(int pontosDeAlugadorFrequente) {
+		this.pontosDeAlugadorFrequente = pontosDeAlugadorFrequente;
+	}
+}
+
