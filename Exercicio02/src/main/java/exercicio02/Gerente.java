@@ -1,4 +1,4 @@
-package Exercicio2;
+package exercicio02;
 
 public class Gerente extends FuncionarioCLT {
 	protected int tamanhoEquipe;

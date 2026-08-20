@@ -1,4 +1,4 @@
-package Exercicio2;
+package exercicio02;
 
 public class Diretor extends Gerente {
 	protected double participacaoLucros;
