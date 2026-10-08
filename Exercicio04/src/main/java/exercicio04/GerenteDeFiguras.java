@@ -1,4 +1,4 @@
-package exericio04;
+package exercicio04;
 
 import java.util.List;
 import java.util.ArrayList;

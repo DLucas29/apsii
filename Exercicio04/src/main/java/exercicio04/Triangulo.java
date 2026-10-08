@@ -1,4 +1,4 @@
-package exericio04;
+package exercicio04;
 
 public class Triangulo implements FiguraGeometrica{
 	private double base;

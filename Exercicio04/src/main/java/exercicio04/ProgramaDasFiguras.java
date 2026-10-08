@@ -1,4 +1,4 @@
-package exericio04;
+package exercicio04;
 
 public class ProgramaDasFiguras {
 	public static void main(String[] args) {

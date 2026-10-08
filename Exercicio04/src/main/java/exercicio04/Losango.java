@@ -1,4 +1,4 @@
-package exericio04;
+package exercicio04;
 
 public class Losango implements FiguraGeometrica{
 	private double diagonal1;
