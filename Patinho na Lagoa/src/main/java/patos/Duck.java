@@ -3,10 +3,10 @@ package patos;
 import quacks.QuackBehavior;
 import voos.FlyBehavior;
 
-public abstract class Duck implements FlyBehavior, QuackBehavior{
+public abstract class Duck{
 
-	FlyBehavior flyBehavior;
-	QuackBehavior quackBehavior;
+	protected FlyBehavior flyBehavior;
+	protected QuackBehavior quackBehavior;
 	public Duck() {
 		
 	}
@@ -23,5 +23,13 @@ public abstract class Duck implements FlyBehavior, QuackBehavior{
 	
 	public void swim() {
 		System.out.println("All Ducks float, even decoys!");
+	}
+	
+	public void setFlyBehavior(FlyBehavior fb) {
+		flyBehavior = fb;
+	}
+	
+	public void setQuackBehavior(QuackBehavior qb) {
+		quackBehavior = qb;
 	}
 }

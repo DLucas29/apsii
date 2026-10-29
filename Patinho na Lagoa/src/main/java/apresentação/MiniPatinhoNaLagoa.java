@@ -2,6 +2,8 @@ package apresentação;
 
 import patos.Duck;
 import patos.MallardDuck;
+import patos.ModelDuck;
+import voos.FlyRocketPowered;
 
 public class MiniPatinhoNaLagoa {
 
@@ -9,5 +11,9 @@ public class MiniPatinhoNaLagoa {
 		Duck mallard = new MallardDuck();
 		mallard.performQuack();
 		mallard.performFly();
+		Duck model = new ModelDuck();
+		model.performFly();
+		model.setFlyBehavior(new FlyRocketPowered());
+		model.performFly();
 	}
 }
